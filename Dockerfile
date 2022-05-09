@@ -3,8 +3,10 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY . /app
 RUN rm -rf node_modules \
-    && yarn install --frozen-lockfile --production \
-    && yarn run build
+    && yarn install --frozen-lockfile \
+    && yarn run build \
+    && rm -rf node_modules \
+    && yarn install --frozen-lockfile --production
 
 FROM node:14
 RUN mkdir -p /app
